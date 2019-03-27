@@ -1,0 +1,38 @@
+{% load static %}
+    <h3>{{ reciepts.0.modified_date | date:"F Y" }}</h3>
+
+        <div class="row grid-style">
+
+                    {% if reciepts %}
+                    {% for reciept in reciepts %}
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="blog-box">
+                            <div class="post-media">
+                                <a href="food-single.html" title="">
+
+                                    <img src="{% static 'blog/upload/blog_square_10.jpg' %}" alt="" class="img-fluid">
+                                    <div class="hovereffect"></div>
+                                </a>
+                            </div><!-- end media -->
+
+                            <div class="blog-meta big-meta">
+                                <div class="rating">
+                                    {% for star in reciept.raiting %}
+                                        <i class="fa fa-star"></i>
+                                    {% endfor %}
+                                </div>
+                                <h4><a href="{% url 'detail' reciept.id %}" title="">{{ reciept.title|title }}</a></h4>
+                                <p>{{ reciept.text | truncatewords:12 }}</p>
+
+                                <small><a href="{% url 'detail' reciept.id %}" title="">{{ reciept.modified_date | date:'d M Y' }}</a></small>
+                                <small><a href="#" title="">by {{ reciept.author }}</a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end blog-box -->
+                    </div><!-- end col -->
+
+                    {% endfor %}
+                    {% endif %}
+                </div> <!-- end row -->
+
+
+
